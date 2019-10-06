@@ -44,9 +44,9 @@
 
     </div>
 </nav>
-<div class="container d-flex justify-content-center">
-    <div class="row">
-        <div class="col-6">
+<div class="container justify-content-center">
+    <div class="row justify-content-center">
+        <div class="col-3">
             <ul class="list-group">
                 <script>
                     var count = 1;
@@ -60,31 +60,35 @@
                 </c:forEach>
             </ul>
         </div>
-        <div class="col-6">
+        <div class="col-6 justify-content-center">
             <div id="currentQuestion">
-                ${questionList[0].definition}
-            <c:choose>
-                <c:when test= "${questionList[0].questionType.name == 'MULTIPLE'}">
                 <div>
-                    <c:forEach items="${questionList[0].answers}" var="answer">
-                        <input type="checkbox" id="contactChoice${answer.id}" class="get_value" value="${answer.id}">
-                        <label for="contactChoice${answer.id}">${answer.definition}</label>
-                    </c:forEach>
+                ${questionList[0].definition}
                 </div>
-                </c:when>
-                <c:otherwise>
-                    <c:forEach items="${questionList[0].answers}" var="answer">
-                        <input type="radio" name="radioAnswer" id="contactChoice${answer.id}" value="${answer.id}">
-                        <label for="contactChoice${answer.id}">${answer.definition}</label>
-                    </c:forEach>
-                </c:otherwise>
-            </c:choose>
+                    <c:choose>
+                        <c:when test= "${questionList[0].questionType.name == 'MULTIPLE'}">
+                            <c:forEach items="${questionList[0].answers}" var="answer">
+                                <div>
+                                    <input type="checkbox" id="contactChoice${answer.id}" class="get_value" value="${answer.id}">
+                                    <label for="contactChoice${answer.id}">${answer.definition}</label>
+                                </div>
+                            </c:forEach>
+                        </c:when>
+                        <c:otherwise>
+                            <c:forEach items="${questionList[0].answers}" var="answer">
+                                <div>
+                                    <input type="radio" name="radioAnswer" id="contactChoice${answer.id}" value="${answer.id}">
+                                    <label for="contactChoice${answer.id}">${answer.definition}</label>
+                                </div>
+                            </c:forEach>
+                        </c:otherwise>
+                    </c:choose>
             </div>
             <button type="button" name="submit" class="btn btn-info" id="submit">Ответить</button>
         </div>
     </div>
-    <div class="row">
-        <div class="col-12">
+    <div class="row justify-content-center">
+        <div class="col-3">
             <a href="/results" class="btn btn-danger btn-lg active" role="button" aria-pressed="true">Закончить тест</a>
         </div>
     </div>
@@ -197,15 +201,15 @@
             $.each(data.answers, function (i, item) {
                 if (answeredQuestion){
                     if (item.answered) {
-                        select.append('<input type="radio" name="radioAnswer" id="contactChoice' + item.id + '" value="' + item.id + '" checked="checked" disabled>' +
-                            '<label for="contactChoice' + item.id + '">' + item.definition + '</label>');
+                        select.append('<div><input type="radio" name="radioAnswer" id="contactChoice' + item.id + '" value="' + item.id + '" checked="checked" disabled>' +
+                            '<label for="contactChoice' + item.id + '">' + item.definition + '</label></div>');
                     } else {
-                        select.append('<input type="radio" name="radioAnswer" id="contactChoice' + item.id + '" value="' + item.id + '" disabled>' +
-                            '<label for="contactChoice' + item.id + '">' + item.definition + '</label>');
+                        select.append('<div><input type="radio" name="radioAnswer" id="contactChoice' + item.id + '" value="' + item.id + '" disabled>' +
+                            '<label for="contactChoice' + item.id + '">' + item.definition + '</label></div>');
                     }
                 } else {
-                    select.append('<input type="radio" name="radioAnswer" id="contactChoice' + item.id + '" value="' + item.id + '">' +
-                        '<label for="contactChoice' + item.id + '">' + item.definition + '</label>');
+                    select.append('<div><input type="radio" name="radioAnswer" id="contactChoice' + item.id + '" value="' + item.id + '">' +
+                        '<label for="contactChoice' + item.id + '">' + item.definition + '</label></div>');
                 }
             });
         } else {
