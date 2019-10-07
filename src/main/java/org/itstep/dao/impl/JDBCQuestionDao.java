@@ -1,12 +1,12 @@
 package org.itstep.dao.impl;
 
-import org.itstep.dao.IData;
 import org.itstep.dao.QuestionDao;
 import org.itstep.dao.mapper.AnswerMapper;
 import org.itstep.dao.mapper.QuestionMapper;
 import org.itstep.model.entity.Answer;
 import org.itstep.model.entity.Question;
 import org.itstep.model.entity.Test;
+import org.itstep.view.SQL;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ public class JDBCQuestionDao implements QuestionDao {
     public List<Question> findAllByTestId(long testId) {
         List<Question> questions = new ArrayList<>();
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(IData.getSqlElement(IData.QUESTIONS_BY_TEST_ID));
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL.getSqlElement(SQL.QUESTIONS_BY_TEST_ID));
             preparedStatement.setLong(1, testId);
             ResultSet rs = preparedStatement.executeQuery();
 
@@ -46,7 +46,7 @@ public class JDBCQuestionDao implements QuestionDao {
 
     private List<Answer> getAnswers(Question question) throws SQLException {
         List<Answer> answers = new ArrayList<>();
-        PreparedStatement preparedStatement = connection.prepareStatement(IData.getSqlElement(IData.ANSWER_BY_QUESTION_ID));
+        PreparedStatement preparedStatement = connection.prepareStatement(SQL.getSqlElement(SQL.ANSWER_BY_QUESTION_ID));
         preparedStatement.setLong(1, question.getId());
         ResultSet answerRs = preparedStatement.executeQuery();
         AnswerMapper answerMapper = new AnswerMapper();

@@ -1,13 +1,13 @@
 package org.itstep.dao.impl;
 
 import org.itstep.controller.config.SecurityConfig;
-import org.itstep.dao.IData;
 import org.itstep.dao.UserAccountDao;
 import org.itstep.dao.exception.AppException;
 import org.itstep.dao.mapper.UserAccountMapper;
 import org.itstep.dao.mapper.UserAccountRoleMapper;
 import org.itstep.model.entity.UserAccount;
 import org.itstep.view.Messages;
+import org.itstep.view.SQL;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ public class JDBCUserDao implements UserAccountDao {
     public Optional<UserAccount> getUserByLgnAndPswrd(String username, String password) {
         UserAccount userAccount;
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(IData.getSqlElement(IData.FINT_BY_LGN_AND_PSWRD));
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL.getSqlElement(SQL.FINT_BY_LGN_AND_PSWRD));
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, password);
             ResultSet rs = preparedStatement.executeQuery();
@@ -49,7 +49,7 @@ public class JDBCUserDao implements UserAccountDao {
     public List<String> getUserRolesByUserId(int userId) {
         List<String> userRoles = new ArrayList<>();
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(IData.getSqlElement(IData.USER_ROLES_BY_USER_ID));
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL.getSqlElement(SQL.USER_ROLES_BY_USER_ID));
             preparedStatement.setInt(1, userId);
             ResultSet rs = preparedStatement.executeQuery();
 
@@ -70,7 +70,7 @@ public class JDBCUserDao implements UserAccountDao {
     public List<String> saveUserRole(UserAccount userAccount) {
         try {
         List<String> roles = new ArrayList<>();
-        PreparedStatement preparedStatement = connection.prepareStatement(IData.getSqlElement(IData.SAVE_USER_ROLE));
+        PreparedStatement preparedStatement = connection.prepareStatement(SQL.getSqlElement(SQL.SAVE_USER_ROLE));
         preparedStatement.setInt(1, userAccount.getId());
         preparedStatement.setInt(2, 1);
         preparedStatement.executeUpdate();
@@ -94,7 +94,7 @@ public class JDBCUserDao implements UserAccountDao {
     @Override
     public UserAccount create(UserAccount user) {
         try {
-        PreparedStatement preparedStatement = connection.prepareStatement(IData.getSqlElement(IData.SAVE_USER), Statement.RETURN_GENERATED_KEYS);
+        PreparedStatement preparedStatement = connection.prepareStatement(SQL.getSqlElement(SQL.SAVE_USER), Statement.RETURN_GENERATED_KEYS);
         preparedStatement.setString(1, user.getFirstName());
         preparedStatement.setString(2, user.getLastName());
         preparedStatement.setString(3, user.getEmail());

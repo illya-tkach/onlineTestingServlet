@@ -1,9 +1,9 @@
 package org.itstep.dao.impl;
 
-import org.itstep.dao.IData;
 import org.itstep.dao.TestDao;
 import org.itstep.dao.mapper.TestMapper;
 import org.itstep.model.entity.Test;
+import org.itstep.view.SQL;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -27,7 +27,7 @@ public class JDBCTestDao implements TestDao {
         List<Test> records = new ArrayList<>();
         try {
             Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery(IData.getSqlElement(IData.ALL_TESTS));
+            ResultSet rs = stmt.executeQuery(SQL.getSqlElement(SQL.ALL_TESTS));
             TestMapper testMapper = new TestMapper();
             while (rs.next()) {
                 records.add(testMapper.extractFromResultSet(rs));
@@ -57,7 +57,7 @@ public class JDBCTestDao implements TestDao {
     @Override
     public void saveRating(long testID, long userID, int totalPoints) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(IData.getSqlElement(IData.SAVE_RATING));
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL.getSqlElement(SQL.SAVE_RATING));
             preparedStatement.setLong(1, testID);
             preparedStatement.setLong(2, userID);
             preparedStatement.setInt(3, totalPoints);

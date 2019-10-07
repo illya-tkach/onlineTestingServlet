@@ -8,6 +8,7 @@ import org.itstep.dao.UserAccountDao;
 import org.itstep.model.entity.UserAccount;
 import org.itstep.service.UserService;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Optional;
 
 public class UserServiceImpl implements UserService {
@@ -35,8 +36,10 @@ public class UserServiceImpl implements UserService {
 
             connection.beginTransaction();
             UserAccount userAccount = accountDao.create(user);
-            userAccount.setRoles(accountDao.saveUserRole(userAccount));
+            List<String> roles = accountDao.saveUserRole(userAccount);
             connection.commit();
+
+            userAccount.setRoles(roles);
 
             return accountDao.create(user);
         }

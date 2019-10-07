@@ -26,9 +26,4 @@ public interface Messages {
     String SQL_EXCEPTION_TRANSACTION_ROLLBACK = "Error rollback transaction";
     String SQL_EXCEPTION_CONNECTION_CLOSE = "Error close connection";
 
-    /* Encrypt algorithm exception message */
-    String ERROR_ENCRYPT_ALGORITHM = "No such algorithm for encrypt";
-
-    /* Message for default 404 page */
-    String REQUESTED_PAGE_NOT_FOUND = "Requested page not found: ";
 }
