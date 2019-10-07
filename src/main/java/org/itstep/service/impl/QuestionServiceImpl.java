@@ -43,7 +43,21 @@ public class QuestionServiceImpl implements QuestionService {
                 .filter(question -> question.getId() == questionID)
                 .findAny();
 
-        if(questionDTO.isPresent()) return questionDTO.get();
+        if (questionDTO.isPresent()) return questionDTO.get();
+        else throw new java.lang.RuntimeException();
+    }
+
+    @Override
+    public QuestionDTO resetAnswers(long questionID, List<QuestionDTO> questionDTOS) {
+        questionDTOS.stream().filter(question -> question.getId() == questionID)
+                .forEach(questionDTO -> questionDTO.getAnswers()
+                        .stream().forEach(answerDTO -> answerDTO.setAnswered(false)));
+
+        Optional<QuestionDTO> questionDTO = questionDTOS.stream()
+                .filter(question -> question.getId() == questionID)
+                .findAny();
+
+        if (questionDTO.isPresent()) return questionDTO.get();
         else throw new java.lang.RuntimeException();
     }
 }

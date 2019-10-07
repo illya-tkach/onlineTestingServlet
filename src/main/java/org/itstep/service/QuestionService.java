@@ -8,4 +8,6 @@ import java.util.List;
 public interface QuestionService {
     List<Question> getAllQuestionsByTestID (long testID);
     QuestionDTO getNextQuestion(long questionID, List<QuestionDTO> questionDTOS);
+    QuestionDTO resetAnswers (long questionID, List<QuestionDTO> questionDTOS);
+
 }

@@ -3,6 +3,7 @@ package org.itstep.dao.impl;
 import org.itstep.dao.TestDao;
 import org.itstep.dao.mapper.TestMapper;
 import org.itstep.model.entity.Test;
+import org.itstep.view.Messages;
 import org.itstep.view.SQL;
 
 import java.sql.*;
@@ -41,17 +42,17 @@ public class JDBCTestDao implements TestDao {
 
     @Override
     public Test create(Test test) {
-        return null;
+        throw new UnsupportedOperationException(Messages.UNSUPPORTED_OPERATION_EXCEPTION);
     }
 
     @Override
     public void update(Test test) {
-
+        throw new UnsupportedOperationException(Messages.UNSUPPORTED_OPERATION_EXCEPTION);
     }
 
     @Override
     public void delete(Long id) {
-
+        throw new UnsupportedOperationException(Messages.UNSUPPORTED_OPERATION_EXCEPTION);
     }
 
     @Override

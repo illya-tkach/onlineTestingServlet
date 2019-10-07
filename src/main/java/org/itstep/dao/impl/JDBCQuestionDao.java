@@ -6,8 +6,8 @@ import org.itstep.dao.mapper.QuestionMapper;
 import org.itstep.model.entity.Answer;
 import org.itstep.model.entity.Question;
 import org.itstep.model.entity.Test;
+import org.itstep.view.Messages;
 import org.itstep.view.SQL;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -60,26 +60,26 @@ public class JDBCQuestionDao implements QuestionDao {
 
     @Override
     public Optional<Test> findById(Long id) {
-        return Optional.empty();
+        throw new UnsupportedOperationException(Messages.UNSUPPORTED_OPERATION_EXCEPTION);
     }
 
     @Override
     public List<Test> findAll() {
-        return null;
+        throw new UnsupportedOperationException(Messages.UNSUPPORTED_OPERATION_EXCEPTION);
     }
 
     @Override
     public Test create(Test test) {
-        return null;
+        throw new UnsupportedOperationException(Messages.UNSUPPORTED_OPERATION_EXCEPTION);
     }
 
     @Override
     public void update(Test test) {
-
+        throw new UnsupportedOperationException(Messages.UNSUPPORTED_OPERATION_EXCEPTION);
     }
 
     @Override
     public void delete(Long id) {
-
+        throw new UnsupportedOperationException(Messages.UNSUPPORTED_OPERATION_EXCEPTION);
     }
 }

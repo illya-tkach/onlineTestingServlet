@@ -32,6 +32,7 @@ public class CommandHolder {
                 put("getQuestion", new QuestionCommand());
                 put("radioAnswered", new AnswerCommand());
                 put("results", new ResultsCommand());
+                put("resetAnswers", new ResetAnswerCommand());
             }
         };
     }

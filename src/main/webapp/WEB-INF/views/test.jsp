@@ -141,7 +141,18 @@
         if(idViaRadioChoice != undefined){
             var radioAnswer = $( "input[name='radioAnswer']:checked" ).val();
             var questionID = $( "button[name='selectedButton']" ).val();
-            selectNextButton(radioAnswer, questionID);
+
+            if($('#submit').text() === "Отменить ответ"){
+                $( "button[name='selectedButton']" ).removeClass('btn-success').addClass('btn-info');
+                resetAnswers("/resetAnswers", questionID);
+            } else {
+                if ( $( "input[name='radioAnswer']:checked" ).val() == undefined){
+                    alert("Выберите вариант ответа!")
+                } else {
+                    $("button[name='selectedButton']").removeClass('btn-info').addClass('btn-success');
+                    selectNextButton(radioAnswer, questionID);
+                }
+            }
         } else {
             var answers = [];
             $('.get_value').each(function () {
@@ -151,6 +162,17 @@
             });
             ajaxSend("/checkboxAnswered", answers)
         }
+    }
+
+    function resetAnswers(url, questionID) {
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: "questionID="+questionID,
+            success: function (data) {
+                addQuestionToView(data);
+            }
+        });
     }
 
     function ajaxSend(url, answerID, questionID, nextQuestionID) {
@@ -198,6 +220,9 @@
                     return false;
                 }
             });
+            if (answeredQuestion){
+                $('#submit').text("Отменить ответ");
+            } else $('#submit').text("Ответить");
             $.each(data.answers, function (i, item) {
                 if (answeredQuestion){
                     if (item.answered) {
