@@ -59,8 +59,20 @@
                 </div>
                 <c:forEach items="${question.answers}" var="answer">
                 <div>
-                        <input type="radio" name="radioAnswer" id="contactChoice${answer.id}" value="${answer.id}">
-                        <label for="contactChoice${answer.id}">${answer.definition}</label>
+                        <input type="radio" id="contactChoice${answer.id}" value="${answer.id}" disabled <c:if test="${answer.answered==true}">checked="checked"</c:if>>
+                        <label for="contactChoice${answer.id}"
+                                <c:choose>
+                                    <c:when test="${answer.isCorrect == true}">
+                                        style="color:green;"
+                                    </c:when>
+                                    <c:when test="${(answer.isCorrect == false)  && (answer.answered == true)}">
+                                        style="color:red;"
+                                    </c:when>
+                                    <c:otherwise>
+                                    </c:otherwise>
+                                </c:choose>>
+                                ${answer.definition}
+                        </label>
                 </div>
                 </c:forEach>
             </div>

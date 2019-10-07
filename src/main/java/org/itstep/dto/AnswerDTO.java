@@ -19,4 +19,7 @@ public class AnswerDTO {
 
     private boolean answered;
 
+    public boolean getIsCorrect() {
+        return isCorrect;
+    }
 }

@@ -44,7 +44,7 @@ public class TestServiceImpl implements TestService {
         for (QuestionDTO question : questionDTOS){
             boolean isUserCorrectAnswered = true;
             for (AnswerDTO answer :question.getAnswers()) {
-                if(answer.isAnswered() != answer.isCorrect()){
+                if(answer.isAnswered() != answer.getIsCorrect()){
                     isUserCorrectAnswered = false;
                     break;
                 }
