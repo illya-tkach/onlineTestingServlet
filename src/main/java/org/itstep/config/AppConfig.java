@@ -5,7 +5,7 @@ import java.util.ResourceBundle;
 /**
  * Application configuration
  *
- * @author Oleksii Morenets
+ * @author Tkach Illya
  */
 public interface AppConfig {
 

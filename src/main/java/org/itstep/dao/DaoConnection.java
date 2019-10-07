@@ -3,7 +3,7 @@ package org.itstep.dao;
 /**
  * interface DaoConnection
  *
- * @author Oleksii Morenets
+ * @author Tkach Illya
  */
 public interface DaoConnection extends AutoCloseable {
 

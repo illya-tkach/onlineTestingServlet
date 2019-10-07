@@ -28,11 +28,6 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public List<QuestionDTO> toDtoQuestions() {
-        return null;
-    }
-
-    @Override
     public List<Question> getAllQuestionsByTestID(long testID) {
         try (DaoConnection connection = daoFactory.getConnection()) {
             QuestionDao questionDao = daoFactory.createQuestionDao(connection);

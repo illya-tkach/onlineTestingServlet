@@ -30,7 +30,7 @@ public interface GenericDao<T> {
      *
      * @param t entity
      */
-    void create(T t);
+    T create(T t);
 
     /**
      * Updates existing entity

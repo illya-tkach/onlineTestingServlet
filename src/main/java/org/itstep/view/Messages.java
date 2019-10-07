@@ -3,7 +3,7 @@ package org.itstep.view;
 /**
  * Application messages
  *
- * @author Oleksii Morenets
+ * @author Tkach Illya
  */
 public interface Messages {
 
@@ -19,6 +19,8 @@ public interface Messages {
 
     /* SQL Exception messages */
     String SQL_EXCEPTION = "SQL Error";
+    String SQL_DUPLICATE = "Duplicate Login or Password";
+    String SQL_ROLE_ERROR = "SQL ROLE ERROR";
     String SQL_EXCEPTION_TRANSACTION_BEGIN = "Error begin transaction";
     String SQL_EXCEPTION_TRANSACTION_COMMIT = "Error commit transaction";
     String SQL_EXCEPTION_TRANSACTION_ROLLBACK = "Error rollback transaction";

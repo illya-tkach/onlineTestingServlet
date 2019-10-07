@@ -9,8 +9,6 @@ import java.util.List;
 public interface TestService {
     List<Test> getAllTests();
 
-//    Test getById(long id);
-//
     int calculatePoints(List<QuestionDTO> questionDTOS);
 //
     void saveRating(long testID, long userID, int totalPoints);

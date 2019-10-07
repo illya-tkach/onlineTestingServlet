@@ -6,7 +6,6 @@ import org.itstep.model.entity.Question;
 import java.util.List;
 
 public interface QuestionService {
-    List<QuestionDTO> toDtoQuestions();
     List<Question> getAllQuestionsByTestID (long testID);
-    public QuestionDTO getNextQuestion(long questionID, List<QuestionDTO> questionDTOS);
+    QuestionDTO getNextQuestion(long questionID, List<QuestionDTO> questionDTOS);
 }

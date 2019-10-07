@@ -40,8 +40,8 @@ public class JDBCTestDao implements TestDao {
     }
 
     @Override
-    public void create(Test test) {
-
+    public Test create(Test test) {
+        return null;
     }
 
     @Override

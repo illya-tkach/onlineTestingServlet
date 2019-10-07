@@ -3,7 +3,7 @@ package org.itstep.dao.exception;
 /**
  * NotUniqueUsername Exception
  *
- * @author Oleksii Morenets
+ * @author Tkach Illya
  */
 public class NotUniqueUsernameException extends RuntimeException {
 

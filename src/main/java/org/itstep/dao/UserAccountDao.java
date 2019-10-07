@@ -24,11 +24,6 @@ public interface UserAccountDao extends GenericDao<UserAccount> {
      */
     List<String> getUserRolesByUserId(int id);
 
-    /**
-     * Fetches number of rows for all users with specified role
-     *
-     * @param user useraccount
-     * @return number of all users with specified role
-     */
-    UserAccount saveUser(UserAccount user) throws SQLException;
+
+    List<String> saveUserRole(UserAccount userAccount);
 }

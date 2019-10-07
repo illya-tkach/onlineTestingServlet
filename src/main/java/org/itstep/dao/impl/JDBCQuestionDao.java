@@ -69,8 +69,8 @@ public class JDBCQuestionDao implements QuestionDao {
     }
 
     @Override
-    public void create(Test test) {
-
+    public Test create(Test test) {
+        return null;
     }
 
     @Override

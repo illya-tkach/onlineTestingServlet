@@ -11,7 +11,7 @@ import java.sql.SQLException;
 /**
  * JdbcDaoConnection
  *
- * @author Oleksii Morenets
+ * @author Tkach Illya
  */
 public class JdbcDaoConnection implements DaoConnection {
 

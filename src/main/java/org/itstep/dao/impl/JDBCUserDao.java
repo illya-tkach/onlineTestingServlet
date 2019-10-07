@@ -3,9 +3,11 @@ package org.itstep.dao.impl;
 import org.itstep.controller.config.SecurityConfig;
 import org.itstep.dao.IData;
 import org.itstep.dao.UserAccountDao;
+import org.itstep.dao.exception.AppException;
 import org.itstep.dao.mapper.UserAccountMapper;
 import org.itstep.dao.mapper.UserAccountRoleMapper;
 import org.itstep.model.entity.UserAccount;
+import org.itstep.view.Messages;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -65,81 +67,56 @@ public class JDBCUserDao implements UserAccountDao {
     }
 
     @Override
-    public UserAccount saveUser(UserAccount user) throws SQLException {
-        connection.setAutoCommit(false);
+    public List<String> saveUserRole(UserAccount userAccount) {
+        try {
+        List<String> roles = new ArrayList<>();
+        PreparedStatement preparedStatement = connection.prepareStatement(IData.getSqlElement(IData.SAVE_USER_ROLE));
+        preparedStatement.setInt(1, userAccount.getId());
+        preparedStatement.setInt(2, 1);
+        preparedStatement.executeUpdate();
+        roles.add(SecurityConfig.ROLE_CLIENT);
+        return roles;
+        } catch (SQLException e){
+            throw new AppException(Messages.SQL_ROLE_ERROR, e);
+        }
+    }
+
+    @Override
+    public Optional<UserAccount> findById(Long id) {
+        throw new UnsupportedOperationException(Messages.UNSUPPORTED_OPERATION_EXCEPTION);
+    }
+
+    @Override
+    public List<UserAccount> findAll() {
+        throw new UnsupportedOperationException(Messages.UNSUPPORTED_OPERATION_EXCEPTION);
+    }
+
+    @Override
+    public UserAccount create(UserAccount user) {
+        try {
         PreparedStatement preparedStatement = connection.prepareStatement(IData.getSqlElement(IData.SAVE_USER), Statement.RETURN_GENERATED_KEYS);
         preparedStatement.setString(1, user.getFirstName());
         preparedStatement.setString(2, user.getLastName());
         preparedStatement.setString(3, user.getEmail());
         preparedStatement.setString(4, user.getPassword());
 
-        try {
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            throw new SQLException("Duplicate username or password");
-        }
-
-
-        int userId;
-        try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
-            if (generatedKeys.next()) {
-                userId = generatedKeys.getInt(1);
-            } else {
-                throw new SQLException("Creating user failed, no ID obtained.");
-            }
-        }
-
-        List<String> roles;
-
-        try {
-            roles = saveUserRole(userId);
-        } catch (SQLException e) {
-            connection.rollback();
-            throw new SQLException("role save exception");
-        }
-
-        connection.commit();
-        return  UserAccount.builder()
-                .id(userId)
-                .email(user.getEmail())
-                .password(user.getPassword())
-                .roles(roles)
-                .build();
-
-    }
-
-    public List<String> saveUserRole(int userId) throws SQLException {
-        List<String> roles = new ArrayList<>();
-        PreparedStatement preparedStatement = connection.prepareStatement(IData.getSqlElement(IData.SAVE_USER_ROLE));
-        preparedStatement.setInt(1, userId);
-        preparedStatement.setInt(2, 1);
         preparedStatement.executeUpdate();
-        roles.add(SecurityConfig.ROLE_CLIENT);
-        return roles;
-    }
 
-    @Override
-    public Optional<UserAccount> findById(Long id) {
-        return Optional.empty();
-    }
-
-    @Override
-    public List<UserAccount> findAll() {
-        return null;
-    }
-
-    @Override
-    public void create(UserAccount userAccount) {
-
+        ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+            user.setId(generatedKeys.getInt(1));
+        return user;
+        } catch (SQLException e) {
+            throw new AppException(Messages.SQL_DUPLICATE, e);
+        }
     }
 
     @Override
     public void update(UserAccount userAccount) {
-
+        throw new UnsupportedOperationException(Messages.UNSUPPORTED_OPERATION_EXCEPTION);
     }
 
     @Override
     public void delete(Long id) {
-
+        throw new UnsupportedOperationException(Messages.UNSUPPORTED_OPERATION_EXCEPTION);
     }
 }

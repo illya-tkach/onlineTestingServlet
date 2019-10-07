@@ -3,7 +3,7 @@ package org.itstep.dao.exception;
 /**
  * AppException - for any unhandled Exception
  *
- * @author Oleksii Morenets
+ * @author Tkach Illya
  */
 public class AppException extends RuntimeException {
 

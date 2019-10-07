@@ -32,7 +32,13 @@ public class UserServiceImpl implements UserService {
     public UserAccount save(UserAccount user) throws SQLException {
         try (DaoConnection connection = daoFactory.getConnection()) {
             UserAccountDao accountDao = daoFactory.createUserDao(connection);
-            return accountDao.saveUser(user);
+
+            connection.beginTransaction();
+            UserAccount userAccount = accountDao.create(user);
+            userAccount.setRoles(accountDao.saveUserRole(userAccount));
+            connection.commit();
+
+            return accountDao.create(user);
         }
     }
 
