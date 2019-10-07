@@ -6,9 +6,12 @@ import org.itstep.dao.mapper.AnswerMapper;
 import org.itstep.dao.mapper.QuestionMapper;
 import org.itstep.model.entity.Answer;
 import org.itstep.model.entity.Question;
+import org.itstep.model.entity.Test;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class JDBCQuestionDao implements QuestionDao {
 
@@ -53,5 +56,30 @@ public class JDBCQuestionDao implements QuestionDao {
         }
 
         return answers;
+    }
+
+    @Override
+    public Optional<Test> findById(Long id) {
+        return Optional.empty();
+    }
+
+    @Override
+    public List<Test> findAll() {
+        return null;
+    }
+
+    @Override
+    public void create(Test test) {
+
+    }
+
+    @Override
+    public void update(Test test) {
+
+    }
+
+    @Override
+    public void delete(Long id) {
+
     }
 }

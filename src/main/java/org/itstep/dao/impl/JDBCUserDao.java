@@ -117,4 +117,29 @@ public class JDBCUserDao implements UserAccountDao {
         roles.add(SecurityConfig.ROLE_CLIENT);
         return roles;
     }
+
+    @Override
+    public Optional<UserAccount> findById(Long id) {
+        return Optional.empty();
+    }
+
+    @Override
+    public List<UserAccount> findAll() {
+        return null;
+    }
+
+    @Override
+    public void create(UserAccount userAccount) {
+
+    }
+
+    @Override
+    public void update(UserAccount userAccount) {
+
+    }
+
+    @Override
+    public void delete(Long id) {
+
+    }
 }

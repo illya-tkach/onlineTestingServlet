@@ -8,12 +8,18 @@ import org.itstep.model.entity.Test;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class JDBCTestDao implements TestDao {
     private Connection connection;
 
     public JDBCTestDao(Connection connection) {
         this.connection = connection;
+    }
+
+    @Override
+    public Optional<Test> findById(Long id) {
+        return Optional.empty();
     }
 
     @Override
@@ -34,6 +40,21 @@ public class JDBCTestDao implements TestDao {
     }
 
     @Override
+    public void create(Test test) {
+
+    }
+
+    @Override
+    public void update(Test test) {
+
+    }
+
+    @Override
+    public void delete(Long id) {
+
+    }
+
+    @Override
     public void saveRating(long testID, long userID, int totalPoints) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(IData.getSqlElement(IData.SAVE_RATING));
@@ -46,4 +67,5 @@ public class JDBCTestDao implements TestDao {
             e.printStackTrace();
         }
     }
+
 }

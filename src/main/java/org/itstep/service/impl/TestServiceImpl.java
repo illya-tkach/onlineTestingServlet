@@ -1,6 +1,7 @@
 package org.itstep.service.impl;
 
-
+import org.apache.log4j.Logger;
+import org.itstep.dao.DaoConnection;
 import org.itstep.dao.DaoFactory;
 import org.itstep.dao.TestDao;
 import org.itstep.dto.AnswerDTO;
@@ -12,12 +13,28 @@ import java.util.List;
 
 public class TestServiceImpl implements TestService {
 
-    TestDao testDao = DaoFactory.getInstance().createTestDao();
+    /* Logger */
+    private static final Logger log = Logger.getLogger(TestServiceImpl.class);
 
+    private DaoFactory daoFactory = DaoFactory.getInstance();
+
+    /**
+     * Lazy holder for service instance
+     */
+    private static class Holder {
+        static final TestServiceImpl INSTANCE = new TestServiceImpl();
+    }
+
+    public static TestServiceImpl getInstance() {
+        return TestServiceImpl.Holder.INSTANCE;
+    }
 
     @Override
     public List<Test> getAllTests() {
-        return testDao.findAll();
+        try (DaoConnection connection = daoFactory.getConnection()) {
+            TestDao testDao = daoFactory.createTestDao(connection);
+            return testDao.findAll();
+        }
     }
 
     @Override
@@ -41,35 +58,10 @@ public class TestServiceImpl implements TestService {
 
     @Override
     public void saveRating(long testID, long userID, int totalPoints) {
-        testDao.saveRating(testID, userID, totalPoints);
+        try (DaoConnection connection = daoFactory.getConnection()) {
+            TestDao testDao = daoFactory.createTestDao(connection);
+            testDao.saveRating(testID, userID, totalPoints);
+        }
     }
 
-//    @Override
-//    public Test getById(long id) {
-//        return testRepository.getOne(id);
-//    }
-//
-//    @Override
-//    public int calculatePoints(List<QuestionDTO> questionDTOS) {
-//        int totalPoints = 0;
-//
-//        for (QuestionDTO question : questionDTOS){
-//            boolean isUserCorrectAnswered = true;
-//            for (AnswerDTO answer :question.getAnswers()) {
-//                if(answer.isAnswered() != answer.isCorrect()){
-//                    isUserCorrectAnswered = false;
-//                    break;
-//                }
-//            }
-//            if (isUserCorrectAnswered)
-//                totalPoints += 1;
-//        }
-//
-//        return totalPoints;
-//    }
-//
-//    @Override
-//    public void save(Test test) {
-//        testRepository.save(test);
-//    }
 }
