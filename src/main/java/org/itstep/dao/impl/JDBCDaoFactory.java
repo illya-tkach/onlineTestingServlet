@@ -53,4 +53,12 @@ public class JDBCDaoFactory extends DaoFactory {
 
         return new JDBCQuestionDao(sqlConnection);
     }
+
+    @Override
+    public TestRatingDao createTestRatingDao(DaoConnection connection) {
+        JdbcDaoConnection jdbcConnection = (JdbcDaoConnection) connection;
+        Connection sqlConnection = jdbcConnection.getConnection();
+
+        return new JDBCTestRatingDao(sqlConnection);
+    }
 }

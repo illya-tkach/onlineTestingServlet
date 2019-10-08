@@ -16,7 +16,7 @@ public class LoginCommand implements Command {
 
     private static final Logger log = Logger.getLogger(LoginCommand.class);
 
-    UserService userService = new UserServiceImpl();
+    UserService userService = UserServiceImpl.getInstance();
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {

@@ -20,10 +20,10 @@ public class QuestionServiceImpl implements QuestionService {
 
     /** Lazy holder for service instance */
     private static class Holder {
-        static final QuestionServiceImpl INSTANCE = new QuestionServiceImpl();
+        static final QuestionService INSTANCE = new QuestionServiceImpl();
     }
 
-    public static QuestionServiceImpl getInstance() {
+    public static QuestionService getInstance() {
         return QuestionServiceImpl.Holder.INSTANCE;
     }
 

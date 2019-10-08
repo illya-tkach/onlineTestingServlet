@@ -50,6 +50,14 @@ public abstract class DaoFactory {
     public abstract QuestionDao createQuestionDao(DaoConnection connection);
 
     /**
+     * Creates TestRating DAO
+     *
+     * @param connection database connection
+     * @return implementation of TestRating DAO
+     */
+    public abstract TestRatingDao createTestRatingDao(DaoConnection connection);
+
+    /**
      * Get an instance of DAO factory
      *
      * @return singleton instance of DAO factory

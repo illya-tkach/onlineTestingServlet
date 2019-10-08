@@ -1,16 +1,19 @@
 package org.itstep.controller.command.impl;
 
+import org.apache.log4j.Logger;
 import org.itstep.controller.command.Command;
-import org.itstep.model.entity.Test;
-import org.itstep.service.TestService;
-import org.itstep.service.impl.TestServiceImpl;
+import org.itstep.model.entity.TestRating;
+import org.itstep.service.TestRatingService;
+import org.itstep.service.impl.TestRatingServiceImpl;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
-public class TestsCommand implements Command {
+public class RatingCommand implements Command {
 
-    TestService testService = TestServiceImpl.getInstance();
+    private static final Logger log = Logger.getLogger(QuestionCommand.class);
+
+    private TestRatingService ratingService = TestRatingServiceImpl.getInstance();
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
@@ -23,16 +26,17 @@ public class TestsCommand implements Command {
         else
             return "/WEB-INF/error/405.jsp";
     }
+
     private String doGet(HttpServletRequest request, HttpServletResponse response) {
 
-        List<Test> tests = testService.getAllTests();
+        List<TestRating> testRatings = ratingService.getAllRatings();
 
-        request.setAttribute("testList", tests);
+        request.setAttribute("testRatings", testRatings);
 
-        return "/WEB-INF/views/testsMenu.jsp";
+        return "/WEB-INF/views/studentsResults.jsp";
     }
 
     private String doPost(HttpServletRequest request, HttpServletResponse response) {
-        return null;
+        return "/WEB-INF/error.jsp";
     }
 }

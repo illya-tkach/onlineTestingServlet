@@ -17,6 +17,7 @@
     <url-pattern>/radioAnswered</url-pattern>
     <url-pattern>/results</url-pattern>
     <url-pattern>/resetAnswers</url-pattern>
+    <url-pattern>/getRating</url-pattern>
   </servlet-mapping>
 
   <filter>

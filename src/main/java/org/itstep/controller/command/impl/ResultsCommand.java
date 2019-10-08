@@ -12,7 +12,7 @@ import java.util.List;
 
 public class ResultsCommand implements Command {
 
-    TestService testService = new TestServiceImpl();
+    TestService testService = TestServiceImpl.getInstance();
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {

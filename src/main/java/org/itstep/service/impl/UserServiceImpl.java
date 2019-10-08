@@ -22,10 +22,10 @@ public class UserServiceImpl implements UserService {
      * Lazy holder for service instance
      */
     private static class Holder {
-        static final UserServiceImpl INSTANCE = new UserServiceImpl();
+        static final UserService INSTANCE = new UserServiceImpl();
     }
 
-    public static UserServiceImpl getInstance() {
+    public static UserService getInstance() {
         return UserServiceImpl.Holder.INSTANCE;
     }
 

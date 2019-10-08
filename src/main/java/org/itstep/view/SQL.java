@@ -56,4 +56,7 @@ public interface SQL {
     String USER_ROLES_BY_USER_ID = "select.user.role.by.userAccount";
     String SAVE_USER = "insert.into.userAccount";
     String SAVE_USER_ROLE = "insert.into.user.role";
+
+    // TestRating
+    String ALL_RATINGS = "select.testRating.all";
 }

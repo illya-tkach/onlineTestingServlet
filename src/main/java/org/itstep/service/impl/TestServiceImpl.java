@@ -22,10 +22,10 @@ public class TestServiceImpl implements TestService {
      * Lazy holder for service instance
      */
     private static class Holder {
-        static final TestServiceImpl INSTANCE = new TestServiceImpl();
+        static final TestService INSTANCE = new TestServiceImpl();
     }
 
-    public static TestServiceImpl getInstance() {
+    public static TestService getInstance() {
         return TestServiceImpl.Holder.INSTANCE;
     }
 

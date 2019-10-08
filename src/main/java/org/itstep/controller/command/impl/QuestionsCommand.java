@@ -14,7 +14,7 @@ import java.util.List;
 
 public class QuestionsCommand implements Command {
 
-    QuestionService questionService = new QuestionServiceImpl();
+    QuestionService questionService = QuestionServiceImpl.getInstance();
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {

@@ -18,7 +18,7 @@ public class QuestionCommand implements Command {
 
     private static final Logger log = Logger.getLogger(QuestionCommand.class);
 
-    QuestionService questionService = new QuestionServiceImpl();
+    QuestionService questionService = QuestionServiceImpl.getInstance();
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {

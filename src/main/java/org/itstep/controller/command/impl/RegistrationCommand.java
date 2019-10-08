@@ -13,7 +13,7 @@ import java.sql.SQLException;
 
 public class RegistrationCommand implements Command {
 
-    UserService userService = new UserServiceImpl();
+    UserService userService = UserServiceImpl.getInstance();
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {

@@ -16,7 +16,7 @@ public class ResetAnswerCommand implements Command {
 
     private static final Logger log = Logger.getLogger(ResetAnswerCommand.class);
 
-    QuestionService questionService = new QuestionServiceImpl();
+    QuestionService questionService = QuestionServiceImpl.getInstance();
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {

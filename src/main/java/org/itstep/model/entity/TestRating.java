@@ -1,18 +1,12 @@
 package org.itstep.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import javax.persistence.*;
-import java.io.Serializable;
-
-
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
+@Builder
 public class TestRating {
 
     private UserAccount user;

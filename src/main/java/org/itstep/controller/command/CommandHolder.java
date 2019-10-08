@@ -33,6 +33,7 @@ public class CommandHolder {
                 put("radioAnswered", new AnswerCommand());
                 put("results", new ResultsCommand());
                 put("resetAnswers", new ResetAnswerCommand());
+                put("getRating", new RatingCommand());
             }
         };
     }
