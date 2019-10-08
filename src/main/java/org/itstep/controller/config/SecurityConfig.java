@@ -16,23 +16,21 @@ public class SecurityConfig {
 
     private static void init() {
 
-        // Configure For "CLIENT" Role.
+        // Configure For "USER" Role.
         List<String> urlPatterns1 = new ArrayList<String>();
 
-        urlPatterns1.add("/userInfo");
-        urlPatterns1.add("/employeeTask");
-        urlPatterns1.add("/personal");
-        urlPatterns1.add("/booking");
-
+        urlPatterns1.add("/getQuestion");
+        urlPatterns1.add("/radioAnswered");
+        urlPatterns1.add("/results");
+        urlPatterns1.add("/resetAnswers");
+        urlPatterns1.add("/tests");
+        urlPatterns1.add("/getRandQuestions");
 
         mapConfig.put(ROLE_CLIENT, urlPatterns1);
 
         // Configure For "ADMIN" Role.
         List<String> urlPatterns2 = new ArrayList<String>();
-        urlPatterns2.add("/recordList");
-        urlPatterns2.add("/userInfo");
-        urlPatterns2.add("/managerTask");
-        urlPatterns2.add("/newRecord");
+        urlPatterns2.add("/getRating");
 
         mapConfig.put(ROLE_ADMIN, urlPatterns2);
     }

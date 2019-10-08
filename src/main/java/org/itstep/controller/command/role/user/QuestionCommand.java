@@ -1,4 +1,4 @@
-package org.itstep.controller.command.impl;
+package org.itstep.controller.command.role.user;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.Logger;
@@ -9,12 +9,13 @@ import org.itstep.service.impl.QuestionServiceImpl;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
-public class ResetAnswerCommand implements Command {
+public class QuestionCommand implements Command {
 
-    private static final Logger log = Logger.getLogger(ResetAnswerCommand.class);
+    private static final Logger log = Logger.getLogger(QuestionCommand.class);
 
     QuestionService questionService = QuestionServiceImpl.getInstance();
 
@@ -29,20 +30,15 @@ public class ResetAnswerCommand implements Command {
         else
             return "/WEB-INF/error/405.jsp";
     }
-
     private String doGet(HttpServletRequest request, HttpServletResponse response) {
-        return "/WEB-INF/error.jsp";
-    }
-
-    private String doPost(HttpServletRequest request, HttpServletResponse response) {
-        List<QuestionDTO> questionDTOS = (List<QuestionDTO>) request.getSession().getAttribute("questionList");
-        long questionID = Long.parseLong(request.getParameter("questionID"));
-
-        QuestionDTO question = questionService.resetAnswers(questionID, questionDTOS);
+        HttpSession session = request.getSession();
+        List<QuestionDTO> questionDTOS = (List<QuestionDTO>) session.getAttribute("questionList");
+        long questionID = Long.parseLong(request.getParameter("question"));
+        QuestionDTO nextQuestion = questionService.getNextQuestion(questionID, questionDTOS);
 
         try {
             response.setContentType("application/json");
-            String json = new ObjectMapper().writeValueAsString(question);
+            String json = new ObjectMapper().writeValueAsString(nextQuestion);
             response.getWriter().write(json);
             return "response:";
         } catch (IOException e) {
@@ -52,5 +48,10 @@ public class ResetAnswerCommand implements Command {
 
         request.setAttribute("error", "Error in QuestionCommand");
         return "/WEB-INF/error.jsp";
+
+    }
+
+    private String doPost(HttpServletRequest request, HttpServletResponse response) {
+        return null;
     }
 }

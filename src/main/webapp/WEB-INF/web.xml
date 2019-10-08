@@ -9,6 +9,7 @@
   </welcome-file-list>
   <servlet-mapping>
     <servlet-name>Servl</servlet-name>
+    <url-pattern>/logout</url-pattern>
     <url-pattern>/login</url-pattern>
     <url-pattern>/registration</url-pattern>
     <url-pattern>/tests</url-pattern>

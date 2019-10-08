@@ -1,9 +1,10 @@
-package org.itstep.controller.command.impl;
+package org.itstep.controller.command.role.all;
 
 import org.apache.log4j.Logger;
 import org.itstep.controller.command.Command;
 import org.itstep.controller.utils.AppUtils;
 import org.itstep.model.entity.UserAccount;
+import org.itstep.model.entity.validator.UserAccountValidator;
 import org.itstep.model.entity.validator.UserValidator;
 import org.itstep.service.UserService;
 import org.itstep.service.impl.UserServiceImpl;
@@ -36,7 +37,7 @@ public class LoginCommand implements Command {
 
     private String doPost(HttpServletRequest request, HttpServletResponse response) {
 
-        UserValidator userValidator = new UserValidator();
+        UserAccountValidator userValidator = new UserAccountValidator();
 
         UserAccount user = UserAccount.builder()
                 .email(request.getParameter("email"))

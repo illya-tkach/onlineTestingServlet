@@ -1,6 +1,10 @@
 package org.itstep.controller.command;
 
-import org.itstep.controller.command.impl.*;
+import org.itstep.controller.command.role.admin.RatingCommand;
+import org.itstep.controller.command.role.all.LoginCommand;
+import org.itstep.controller.command.role.all.LogoutCommand;
+import org.itstep.controller.command.role.all.RegistrationCommand;
+import org.itstep.controller.command.role.user.*;
 
 import java.util.HashMap;
 import java.util.Map;

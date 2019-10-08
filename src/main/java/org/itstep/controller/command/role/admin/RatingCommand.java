@@ -1,7 +1,8 @@
-package org.itstep.controller.command.impl;
+package org.itstep.controller.command.role.admin;
 
 import org.apache.log4j.Logger;
 import org.itstep.controller.command.Command;
+import org.itstep.controller.command.role.user.QuestionCommand;
 import org.itstep.model.entity.TestRating;
 import org.itstep.service.TestRatingService;
 import org.itstep.service.impl.TestRatingServiceImpl;

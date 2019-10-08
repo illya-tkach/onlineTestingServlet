@@ -1,4 +1,4 @@
-package org.itstep.controller.command.impl;
+package org.itstep.controller.command.role.user;
 
 import org.itstep.controller.command.Command;
 import org.itstep.dto.QuestionDTO;

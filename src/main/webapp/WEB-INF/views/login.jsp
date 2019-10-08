@@ -22,13 +22,16 @@
     <div class="row justify-content-center">
         <div class="col-4">
             <form method="POST" action="${contextPath}/login" class="form-signin">
+                <input type="hidden" name="redirectId" value="${param.redirectId}" />
                 <h2 class="form-heading">Log in</h2>
 
                 <div class="form-group ${error != null ? 'has-error' : ''}">
                     <span>${message}</span>
                     <input name="email" type="text" class="form-control" placeholder="Username"
                            autofocus="true"/>
+                    <p style="color: red;">${emailError}</p>
                     <input name="password" type="password" class="form-control" placeholder="Password"/>
+                    <p style="color: red;">${passwordError}</p>
                     <span>${error}</span>
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 

@@ -1,14 +1,13 @@
-package org.itstep.controller.command.impl;
+package org.itstep.controller.command.role.user;
 
 import org.itstep.controller.command.Command;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class LogoutCommand implements Command {
+public class HomeCommand implements Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        request.getSession().invalidate();
-        return "redirect:/";
+        return "/WEB-INF/views/testMenu.jsp";
     }
 }

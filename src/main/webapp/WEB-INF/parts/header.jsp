@@ -8,9 +8,8 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Products List</title>
+    <title>Online testing</title>
 
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
     <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="${contextPath}/resources/css/common.css" rel="stylesheet"/>
 </head>

@@ -1,15 +1,14 @@
-package org.itstep.controller.command.impl;
+package org.itstep.controller.command.role.all;
 
 import org.itstep.controller.command.Command;
 import org.itstep.controller.utils.AppUtils;
+import org.itstep.dao.exception.NotUniqueUsernameException;
 import org.itstep.model.entity.UserAccount;
 import org.itstep.model.entity.validator.UserValidator;
 import org.itstep.service.UserService;
 import org.itstep.service.impl.UserServiceImpl;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.sql.SQLException;
 
 public class RegistrationCommand implements Command {
 
@@ -48,13 +47,10 @@ public class RegistrationCommand implements Command {
             return "/WEB-INF/views/registration.jsp";
         } else {
             try {
-
                 userService.save(user);
-
                 AppUtils.storeLoginedUser(request.getSession(), user);
-
                 return "/index.jsp";
-            } catch (SQLException e) {
+            } catch (NotUniqueUsernameException e) {
                 String errorMessage = e.getMessage();
 
                 request.setAttribute("errorMessage", errorMessage);
