@@ -18,8 +18,10 @@ public class UserValidatorTest {
     @Test
     public void testValidate_valid() {
         UserAccount user = UserAccount.builder()
-                .email("username")
+                .email("username@gmail.com")
                 .password("password")
+                .firstName("Ivan")
+                .lastName("Franko")
                 .build();
         userValidator.validate(user);
 
@@ -28,12 +30,28 @@ public class UserValidatorTest {
 
     @Test
     public void testValidate_inValidUserName() {
+        UserAccount user = UserAccount.builder()
+                .email("")
+                .password("password")
+                .firstName("Ivan")
+                .lastName("Franko")
+                .build();
+        userValidator.validate(user);
 
+        assertTrue(userValidator.hasErrors());
     }
 
 
     @Test
     public void testValidate_invalidPassword() {
+        UserAccount user = UserAccount.builder()
+                .email("")
+                .password("")
+                .firstName("Ivan")
+                .lastName("Franko")
+                .build();
+        userValidator.validate(user);
 
+        assertTrue(userValidator.hasErrors());
     }
 }
